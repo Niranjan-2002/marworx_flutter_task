@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:marworx_flutter_task/data_models/job.dart';
 import 'package:marworx_flutter_task/providers/job_provider.dart';
+import 'package:marworx_flutter_task/ui/admin_dashboard.dart';
 import 'package:provider/provider.dart';
 
 
@@ -137,8 +138,13 @@ class _EditJobScreenState extends State<EditJobScreen> {
 
                   if (widget.job == null) {
                     await jobProvider.addJob(job);
+
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>AdminDashboard()));
                   } else {
                     await jobProvider.updateJob(job);
+
+                                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>AdminDashboard()));
+
                   }
 
                   if (!mounted) return;

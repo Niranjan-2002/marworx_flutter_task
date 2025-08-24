@@ -74,43 +74,42 @@ class _AdminDashboardState extends State<AdminDashboard> {
                       icon: Icons.edit,
                       label: 'Edit',
                     ),
-                    SlidableAction(
-                      onPressed: (context) async {
-                        final confirm = await showDialog<bool>(
-                          context: context,
-                          builder: (_) => AlertDialog(
-                            title: const Text("Confirm Delete"),
-                            content: const Text(
-                                "Are you sure you want to delete this job?"),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(context, false),
-                                child: const Text("Cancel"),
-                              ),
-                              ElevatedButton(
-                                onPressed: () =>
-                                    Navigator.pop(context, true),
-                                child: const Text("Delete"),
-                              ),
-                            ],
-                          ),
-                        );
+                  SlidableAction(
+  onPressed: (context) async {
+    await showDialog(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text("Confirm Delete"),
+        content: const Text(
+            "Are you sure you want to delete this job?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext), 
+            child: const Text("Cancel"),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              await jobProvider.deleteJob(job.id);
 
-                        if (confirm == true) {
-                          await jobProvider.deleteJob(job.id);
-                          setState(() {});
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text("Job deleted successfully")),
-                          );
-                        }
-                      },
-                      
-                      foregroundColor: Colors.red,
-                      icon: Icons.delete,
-                      label: 'Delete',
-                    ),
+              Navigator.pop(dialogContext);
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Job deleted successfully"),
+                ),
+              );
+            },
+            child: const Text("Delete"),
+          ),
+        ],
+      ),
+    );
+  },
+  foregroundColor: Colors.red,
+  icon: Icons.delete,
+  label: 'Delete',
+)
+
                   ],
                 ),
 
