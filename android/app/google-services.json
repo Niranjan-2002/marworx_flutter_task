@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "639829727465",
+    "project_id": "marwox-a53e6",
+    "storage_bucket": "marwox-a53e6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639829727465:android:cb3443ac2b6365279c3878",
+        "android_client_info": {
+          "package_name": "com.example.marworx_flutter_task"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAv0kVqlXvtjswJq0TZq1xI7uMSzPWf_jU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
